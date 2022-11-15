@@ -6,6 +6,8 @@ import androidx.appcompat.app.AlertDialog;
 
 public class Deposit {
 
+
+
     private int accountBalance;
     public int accountBalanceAfter;
     private int amountToWithdraw;

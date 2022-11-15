@@ -7,7 +7,7 @@
     tools:context=".AccountActivity">
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/accountBalanceEditText"
         android:layout_width="211dp"
         android:layout_height="66dp"
         android:ems="10"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.536" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/accountNoEditText"
         android:layout_width="186dp"
         android:layout_height="48dp"
         android:ems="10"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.259" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/accountNameEditText"
         android:layout_width="186dp"
         android:layout_height="48dp"
         android:ems="10"
@@ -59,10 +59,10 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintHorizontal_bias="0.685"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.209" />
+        app:layout_constraintVertical_bias="0.221" />
 
     <TextView
         android:id="@+id/textView6"
@@ -72,13 +72,13 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.209" />
+        app:layout_constraintVertical_bias="0.221" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/depositButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="deposit"
@@ -90,19 +90,19 @@
         app:layout_constraintVertical_bias="0.737" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/logoutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="sign out"
+        android:text="log out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.769"
+        app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.907" />
+        app:layout_constraintVertical_bias="0.9" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/withdrawButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="withdraw"
@@ -122,7 +122,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintVertical_bias="0.186" />
 
     <View
         android:id="@+id/divider3"
@@ -146,7 +146,7 @@
         app:layout_constraintVertical_bias="0.673" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/aboutActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
