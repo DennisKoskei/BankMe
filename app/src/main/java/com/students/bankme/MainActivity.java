@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     // ----- METHODS -----
     // ----- This method is used to display a warning message if the user inputs wrong username of password
     private void WrongCredentials() {
