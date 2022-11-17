@@ -9,12 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    CustomerActivity cust1 = new CustomerActivity();
-    String username;
-    int password;
+    String username, setUsername;
+    int password, setPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +27,25 @@ public class MainActivity extends AppCompatActivity {
         Button signInButton = findViewById(R.id.signInButton);
 
         //-----  THE MAIN CODE STARTS HERE -----
+
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent usernameIntent = getIntent();
+                Intent passwordIntent = getIntent();
+                setUsername = usernameIntent.getStringExtra("message_fullname");
+                setPassword = passwordIntent.getIntExtra("message_password", 0);
+
                 username = usernameInput.getText().toString();
                 password = Integer.parseInt(passwordInput.getText().toString());
 
-                if (password != cust1.password && username != cust1.fullName){
+                if (password == setPassword || username == setUsername){
                     WrongCredentials();
                     usernameInput.getText().clear();
                     passwordInput.getText().clear();
                 }else{
                     startActivity(new Intent(MainActivity.this, AccountActivity.class));
                 }
-
             }
         });
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +76,4 @@ public class MainActivity extends AppCompatActivity {
         });
         builder.show();
     }
-
-
-
-
-    //----- END -----
 }

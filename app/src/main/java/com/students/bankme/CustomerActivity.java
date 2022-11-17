@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -61,8 +62,15 @@ public class CustomerActivity extends AppCompatActivity {
                     passwordConfirmEditText.getText().clear(); // used to clear the passwordConfirmation field
                 }else{
                     // Code ... = Add code to print out a message to say that the details have been saved.
-                    Toast.makeText(CustomerActivity.this, "Details saved ...", Toast.LENGTH_SHORT).show();
-                    finish(); // Kill the current Activity and go back to the previous activity--> MainActivity.java
+                    Intent fullNameIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent passwordIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    fullNameIntent.putExtra("message_fullname", fullName);
+                    passwordIntent.putExtra("message_password", password);
+                    startActivity(fullNameIntent);
+                    startActivity(passwordIntent);
+                    Toast.makeText(CustomerActivity.this, fullName, Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(CustomerActivity.this, MainActivity.class));
+                     finish(); // Kill the current Activity and go back to the previous activity--> MainActivity.java
                 }
             }
         });
