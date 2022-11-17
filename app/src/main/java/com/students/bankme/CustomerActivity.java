@@ -15,8 +15,8 @@ public class CustomerActivity extends AppCompatActivity {
     String fullName;
     int accountNo;
     int IDno;
-    boolean gender;
-    int dateOfBirth;
+    String gender;
+    String dateOfBirth;
     int age;
     int password;
     int passwordConfirmation;
@@ -29,8 +29,9 @@ public class CustomerActivity extends AppCompatActivity {
 
         EditText fullNameEditText = findViewById(R.id.fullNameEditText);
         EditText idNoEtNum = findViewById(R.id.idNoEtNum);
+        EditText genderEditText = findViewById(R.id.genderEditText);
         EditText dateEditText = findViewById(R.id.dateEditText);
-        CheckBox maleCheckBox = findViewById(R.id.maleCheckBox);
+        EditText ageEditText = findViewById(R.id.ageEditText);
         EditText accountNumberEtNum = findViewById(R.id.accountNumberEtNum);
         EditText passwordInput = findViewById(R.id.passwordEditTextNumber);
         EditText passwordConfirmEditText = findViewById(R.id.confirmPasswordEditTextNumber);
@@ -41,9 +42,9 @@ public class CustomerActivity extends AppCompatActivity {
             public void onClick(View view) {
                 fullName = fullNameEditText.getText().toString();
                 IDno = Integer.parseInt(idNoEtNum.getText().toString());
-//                gender = ;
-//                dob
-//                age
+                gender = genderEditText.getText().toString();
+                dateOfBirth = dateEditText.getText().toString();
+                age = Integer.parseInt(ageEditText.getText().toString());
                 accountNo = Integer.parseInt(accountNumberEtNum.getText().toString());
                 password = Integer.parseInt(passwordInput.getText().toString());
                 passwordConfirmation = Integer.parseInt(passwordConfirmEditText.getText().toString());
