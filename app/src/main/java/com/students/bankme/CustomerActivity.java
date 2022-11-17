@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class CustomerActivity extends AppCompatActivity {
 
@@ -20,6 +21,8 @@ public class CustomerActivity extends AppCompatActivity {
     int age;
     int password;
     int passwordConfirmation;
+    String nullStringChecker = "";
+    int nullIntChecker;
 
 
     @Override
@@ -49,12 +52,16 @@ public class CustomerActivity extends AppCompatActivity {
                 password = Integer.parseInt(passwordInput.getText().toString());
                 passwordConfirmation = Integer.parseInt(passwordConfirmEditText.getText().toString());
 
-                if (password != passwordConfirmation){
-                   passwordsMismatchAlert();
-                   passwordInput.getText().clear(); // used to clear the passwordInput field
+                // || IDno == nullIntChecker || gender == nullStringChecker || dateOfBirth == nullStringChecker || age == nullIntChecker || accountNo == nullIntChecker || password == nullIntChecker || passwordConfirmation == nullIntChecker
+                if(fullName == nullStringChecker){
+                    nullEntriesDetected();
+                }else if (password != passwordConfirmation){
+                    passwordsMismatchAlert();
+                    passwordInput.getText().clear(); // used to clear the passwordInput field
                     passwordConfirmEditText.getText().clear(); // used to clear the passwordConfirmation field
                 }else{
                     // Code ... = Add code to print out a message to say that the details have been saved.
+                    Toast.makeText(CustomerActivity.this, "Details saved ...", Toast.LENGTH_SHORT).show();
                     finish(); // Kill the current Activity and go back to the previous activity--> MainActivity.java
                 }
             }
@@ -62,6 +69,15 @@ public class CustomerActivity extends AppCompatActivity {
     }
 
     // ----- METHODS TO BE CALLED-----
+    private void nullEntriesDetected(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(CustomerActivity.this);
+        builder.setTitle("Empty Entries Detected !");
+        builder.setMessage("Fill all the Entries required to proceed.");
+        builder.setCancelable(true);
+        builder.setNegativeButton("Cancel", ((dialogInterface, i) -> dialogInterface.cancel()));
+        builder.setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.cancel());
+        builder.show();
+    }
     // This method is used to display an AlertDialog saying that the passwords entered to not match.
     public void passwordsMismatchAlert (){
         AlertDialog.Builder builder = new AlertDialog.Builder(CustomerActivity.this);
