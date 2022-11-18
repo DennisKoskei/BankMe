@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
 
     String username, setUsername;
@@ -39,11 +40,13 @@ public class MainActivity extends AppCompatActivity {
                 username = usernameInput.getText().toString();
                 password = Integer.parseInt(passwordInput.getText().toString());
 
-                if (password == setPassword || username == setUsername){
+                if (password != setPassword){ //username.equals(setUsername)
+                    Toast.makeText(MainActivity.this, "Unsuccessful Login ....", Toast.LENGTH_LONG).show();
                     WrongCredentials();
                     usernameInput.getText().clear();
                     passwordInput.getText().clear();
                 }else{
+                    Toast.makeText(MainActivity.this, "Password Verification Successful ...", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this, AccountActivity.class));
                 }
             }
