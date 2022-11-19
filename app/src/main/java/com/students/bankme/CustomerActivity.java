@@ -63,11 +63,13 @@ public class CustomerActivity extends AppCompatActivity {
                 }else{
                     // Code ... = Add code to print out a message to say that the details have been saved.
                     Intent fullNameIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    Intent passwordIntent = new Intent(getApplicationContext(), MainActivity.class);
                     fullNameIntent.putExtra("message_fullname", fullName);
-                    passwordIntent.putExtra("message_password", password);
                     startActivity(fullNameIntent);
+
+                    Intent passwordIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    passwordIntent.putExtra("message_password", password);
                     startActivity(passwordIntent);
+
                     Toast.makeText(CustomerActivity.this, fullName, Toast.LENGTH_SHORT).show();
 //                    startActivity(new Intent(CustomerActivity.this, MainActivity.class));
                      finish(); // Kill the current Activity and go back to the previous activity--> MainActivity.java
