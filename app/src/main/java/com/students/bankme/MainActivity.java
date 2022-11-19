@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     String username, setUsername;
-    int password, setPassword;
+    int password, setPassword, accountNo, accountBal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +32,13 @@ public class MainActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent usernameIntent = getIntent();
-                Intent passwordIntent = getIntent();
-                setUsername = usernameIntent.getStringExtra("message_fullname");
-                setPassword = passwordIntent.getIntExtra("message_password", 0);
+                Bundle bundle = getIntent().getExtras();
+                if (bundle != null) {
+                    setUsername = bundle.getString("message_fullname");
+                    setPassword = bundle.getInt("message_password");
+                    accountNo = bundle.getInt("message_accountNo");
+                    accountBal = bundle.getInt("message_accountBal");
+                }
 
                 username = usernameInput.getText().toString();
                 password = Integer.parseInt(passwordInput.getText().toString());
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     usernameInput.getText().clear();
                     passwordInput.getText().clear();
                 }else{
-                    Toast.makeText(MainActivity.this, "Password Verification Successful ...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, String.valueOf(accountBal), Toast.LENGTH_LONG).show();
                     startActivity(new Intent(MainActivity.this, AccountActivity.class));
                 }
             }

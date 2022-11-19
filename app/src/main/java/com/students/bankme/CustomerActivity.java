@@ -22,6 +22,7 @@ public class CustomerActivity extends AppCompatActivity {
     int age;
     int password;
     int passwordConfirmation;
+    int accountBal = 1000;
     String nullStringChecker = "";
     int nullIntChecker;
 
@@ -61,16 +62,17 @@ public class CustomerActivity extends AppCompatActivity {
                     passwordInput.getText().clear(); // used to clear the passwordInput field
                     passwordConfirmEditText.getText().clear(); // used to clear the passwordConfirmation field
                 }else{
-                    // Code ... = Add code to print out a message to say that the details have been saved.
-                    Intent fullNameIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    fullNameIntent.putExtra("message_fullname", fullName);
-                    startActivity(fullNameIntent);
+                    // This code transfers the listed data to the MainActivity.class
+                    Bundle bundle = new Bundle();
+                    bundle.putString("message_fullname", fullName);
+                    bundle.putInt("message_password", password);
+                    bundle.putInt("message_accountNo", accountNo);
+                    bundle.putInt("message_accountBal", accountBal);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
 
-                    Intent passwordIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    passwordIntent.putExtra("message_password", password);
-                    startActivity(passwordIntent);
-
-                    Toast.makeText(CustomerActivity.this, fullName, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CustomerActivity.this, String.valueOf(accountNo), Toast.LENGTH_SHORT).show();
 //                    startActivity(new Intent(CustomerActivity.this, MainActivity.class));
                      finish(); // Kill the current Activity and go back to the previous activity--> MainActivity.java
                 }
