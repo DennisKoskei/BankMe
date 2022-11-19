@@ -3,18 +3,16 @@ package com.students.bankme;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class CustomerActivity extends AppCompatActivity {
 
-    String fullName;
+    String username;
     int accountNo;
     int IDno;
     String gender;
@@ -45,7 +43,7 @@ public class CustomerActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fullName = fullNameEditText.getText().toString();
+                username = fullNameEditText.getText().toString();
                 IDno = Integer.parseInt(idNoEtNum.getText().toString());
                 gender = genderEditText.getText().toString();
                 dateOfBirth = dateEditText.getText().toString();
@@ -55,7 +53,7 @@ public class CustomerActivity extends AppCompatActivity {
                 passwordConfirmation = Integer.parseInt(passwordConfirmEditText.getText().toString());
 
                 // || IDno == nullIntChecker || gender == nullStringChecker || dateOfBirth == nullStringChecker || age == nullIntChecker || accountNo == nullIntChecker || password == nullIntChecker || passwordConfirmation == nullIntChecker
-                if(fullName == nullStringChecker){
+                if(username == nullStringChecker){
                     nullEntriesDetected();
                 }else if (password != passwordConfirmation){
                     passwordsMismatchAlert();
@@ -64,7 +62,7 @@ public class CustomerActivity extends AppCompatActivity {
                 }else{
                     // This code transfers the listed data to the MainActivity.class
                     Bundle bundle = new Bundle();
-                    bundle.putString("message_fullname", fullName);
+                    bundle.putString("message_username", username);
                     bundle.putInt("message_password", password);
                     bundle.putInt("message_accountNo", accountNo);
                     bundle.putInt("message_accountBal", accountBal);
@@ -72,7 +70,7 @@ public class CustomerActivity extends AppCompatActivity {
                     intent.putExtras(bundle);
                     startActivity(intent);
 
-                    Toast.makeText(CustomerActivity.this, String.valueOf(accountNo), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CustomerActivity.this, "Details Saved ...", Toast.LENGTH_SHORT).show();
 //                    startActivity(new Intent(CustomerActivity.this, MainActivity.class));
                      finish(); // Kill the current Activity and go back to the previous activity--> MainActivity.java
                 }

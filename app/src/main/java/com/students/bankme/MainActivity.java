@@ -32,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Receiving an explicit Intent from CustomerActivity
                 Bundle bundle = getIntent().getExtras();
                 if (bundle != null) {
-                    setUsername = bundle.getString("message_fullname");
+                    setUsername = bundle.getString("message_username");
                     setPassword = bundle.getInt("message_password");
                     accountNo = bundle.getInt("message_accountNo");
                     accountBal = bundle.getInt("message_accountBal");
@@ -44,13 +45,19 @@ public class MainActivity extends AppCompatActivity {
                 password = Integer.parseInt(passwordInput.getText().toString());
 
                 if (password != setPassword){ //username.equals(setUsername)
-                    Toast.makeText(MainActivity.this, "Unsuccessful Login ....", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Unsuccessful Login ...", Toast.LENGTH_LONG).show();
                     WrongCredentials();
                     usernameInput.getText().clear();
                     passwordInput.getText().clear();
                 }else{
-                    Toast.makeText(MainActivity.this, String.valueOf(accountBal), Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(MainActivity.this, AccountActivity.class));
+                    Toast.makeText(MainActivity.this, "Successful Login ...", Toast.LENGTH_LONG).show();
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("message_username", username);
+                    bundle1.putInt("message_accountNo",accountNo);
+                    bundle1.putInt("message_accountBal", accountBal);
+                    Intent intent1 = new Intent(getApplicationContext(), AccountActivity.class);
+                    intent1.putExtras(bundle1);
+                    startActivity(intent1);
                 }
             }
         });
