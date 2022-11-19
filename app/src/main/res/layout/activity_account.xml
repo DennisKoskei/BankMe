@@ -7,19 +7,17 @@
     tools:context=".AccountActivity">
 
     <EditText
-        android:id="@+id/accountBalanceEditText"
-        android:layout_width="211dp"
-        android:layout_height="66dp"
+        android:id="@+id/accountBalEditText"
+        android:layout_width="253dp"
+        android:layout_height="153dp"
         android:ems="10"
-        android:hint="Account Balance"
+        android:hint="Balance"
         android:inputType="textPersonName"
-        android:textSize="24sp"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/accountNoEditText"
@@ -37,7 +35,7 @@
         app:layout_constraintVertical_bias="0.259" />
 
     <EditText
-        android:id="@+id/accountNameEditText"
+        android:id="@+id/usernameEditText"
         android:layout_width="186dp"
         android:layout_height="48dp"
         android:ems="10"

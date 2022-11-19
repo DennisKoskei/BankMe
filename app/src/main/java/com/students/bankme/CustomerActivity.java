@@ -40,40 +40,37 @@ public class CustomerActivity extends AppCompatActivity {
         EditText passwordConfirmEditText = findViewById(R.id.confirmPasswordEditTextNumber);
         Button saveButton = findViewById(R.id.saveButton);
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                username = fullNameEditText.getText().toString();
-                IDno = Integer.parseInt(idNoEtNum.getText().toString());
-                gender = genderEditText.getText().toString();
-                dateOfBirth = dateEditText.getText().toString();
-                age = Integer.parseInt(ageEditText.getText().toString());
-                accountNo = Integer.parseInt(accountNumberEtNum.getText().toString());
-                password = Integer.parseInt(passwordInput.getText().toString());
-                passwordConfirmation = Integer.parseInt(passwordConfirmEditText.getText().toString());
+        saveButton.setOnClickListener(view -> {
+            username = fullNameEditText.getText().toString();
+            IDno = Integer.parseInt(idNoEtNum.getText().toString());
+            gender = genderEditText.getText().toString();
+            dateOfBirth = dateEditText.getText().toString();
+            age = Integer.parseInt(ageEditText.getText().toString());
+            accountNo = Integer.parseInt(accountNumberEtNum.getText().toString());
+            password = Integer.parseInt(passwordInput.getText().toString());
+            passwordConfirmation = Integer.parseInt(passwordConfirmEditText.getText().toString());
 
-                // || IDno == nullIntChecker || gender == nullStringChecker || dateOfBirth == nullStringChecker || age == nullIntChecker || accountNo == nullIntChecker || password == nullIntChecker || passwordConfirmation == nullIntChecker
-                if(username == nullStringChecker){
-                    nullEntriesDetected();
-                }else if (password != passwordConfirmation){
-                    passwordsMismatchAlert();
-                    passwordInput.getText().clear(); // used to clear the passwordInput field
-                    passwordConfirmEditText.getText().clear(); // used to clear the passwordConfirmation field
-                }else{
-                    // This code transfers the listed data to the MainActivity.class
-                    Bundle bundle = new Bundle();
-                    bundle.putString("message_username", username);
-                    bundle.putInt("message_password", password);
-                    bundle.putInt("message_accountNo", accountNo);
-                    bundle.putInt("message_accountBal", accountBal);
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+            // || IDno == nullIntChecker || gender == nullStringChecker || dateOfBirth == nullStringChecker || age == nullIntChecker || accountNo == nullIntChecker || password == nullIntChecker || passwordConfirmation == nullIntChecker
+            if(username == nullStringChecker){
+                nullEntriesDetected();
+            }else if (password != passwordConfirmation){
+                passwordsMismatchAlert();
+                passwordInput.getText().clear(); // used to clear the passwordInput field
+                passwordConfirmEditText.getText().clear(); // used to clear the passwordConfirmation field
+            }else{
+                // This code transfers the listed data to the MainActivity.class
+                Bundle bundle = new Bundle();
+                bundle.putString("message_username", username);
+                bundle.putInt("message_password", password);
+                bundle.putInt("message_accountNo", accountNo);
+                bundle.putInt("message_accountBal", accountBal);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
 
-                    Toast.makeText(CustomerActivity.this, "Details Saved ...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CustomerActivity.this, "Details Saved ...", Toast.LENGTH_SHORT).show();
 //                    startActivity(new Intent(CustomerActivity.this, MainActivity.class));
-                     finish(); // Kill the current Activity and go back to the previous activity--> MainActivity.java
-                }
+                 finish(); // Kill the current Activity and go back to the previous activity--> MainActivity.java
             }
         });
     }
