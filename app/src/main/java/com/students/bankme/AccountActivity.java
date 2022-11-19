@@ -1,17 +1,12 @@
 package com.students.bankme;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -43,9 +38,11 @@ public class AccountActivity extends AppCompatActivity {
         accountBalTextView.setText(String.valueOf(accountBal));
 
         depositButton.setOnClickListener(view -> {
+            depositAmount();
             Toast.makeText(this, "Deposit successful", Toast.LENGTH_SHORT).show();
         });
         withdrawButton.setOnClickListener(view ->{
+            withdrawAmount();
             Toast.makeText(this, "withdraw successful", Toast.LENGTH_SHORT).show();
         });
         logoutButton.setOnClickListener(view -> {
@@ -54,5 +51,12 @@ public class AccountActivity extends AppCompatActivity {
         infoButton.setOnClickListener(view -> {
             startActivity(new Intent(AccountActivity.this, AboutScrollingActivity.class));
         });
+    }
+
+    public void withdrawAmount(){
+        // Code ...
+    }
+    public void depositAmount(){
+        // Code ...
     }
 }
