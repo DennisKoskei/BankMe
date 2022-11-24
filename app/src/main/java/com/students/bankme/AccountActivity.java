@@ -39,7 +39,7 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
         accountBalTextView.setText(String.valueOf(accountBal));
 
         depositButton.setOnClickListener(view -> {
-            openDialog();
+            openDepositDialog();
         });
         withdrawButton.setOnClickListener(view ->{
             withdrawAmount();
@@ -52,7 +52,7 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
             startActivity(new Intent(AccountActivity.this, AboutScrollingActivity.class));
         });
     }
-    public void openDialog(){
+    public void openDepositDialog(){
         DepositDialog depositDialog= new DepositDialog();
         depositDialog.show(getSupportFragmentManager(), "depositDialog");
     }
