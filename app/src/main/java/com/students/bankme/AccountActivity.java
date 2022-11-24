@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DecimalFormat;
+
 public class AccountActivity extends AppCompatActivity implements DepositDialog.DepositDialogListener, WithdrawDialog.WithdrawDialogListener {
 
     int accountNo;
@@ -42,7 +44,10 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
         }
         usernameTextView.setText(username);
         accountNoTextView.setText(String.valueOf(accountNo));
-        accountBalTextView.setText(String.valueOf(accountBal));
+
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        String accountBalFormatted = formatter.format(accountBal);
+        accountBalTextView.setText(accountBalFormatted);
 
         depositButton.setOnClickListener(view -> {
             openDepositDialog();
@@ -72,12 +77,18 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
     public void applyTexts(int enteredAmount) {
         accountBal = accountBal + enteredAmount;
         accountBalTextView.setText(String.valueOf(accountBal));
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        String formatted = formatter.format(accountBal);
+        accountBalTextView.setText(formatted);
         Toast.makeText(this, "Deposit successful", Toast.LENGTH_SHORT).show();
     }
     @Override
     public void applyTexts2(int enteredWithdrawAmount) {
         accountBal = accountBal - enteredWithdrawAmount;
-        accountBalTextView.setText(String.valueOf(accountBal));
+        DecimalFormat formatter = new DecimalFormat("#,###.00");
+        String formatted = formatter.format(accountBal);
+        accountBalTextView.setText(formatted);
         Toast.makeText(this, "Withdraw successful", Toast.LENGTH_SHORT).show();
+
     }
 }
