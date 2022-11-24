@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AccountActivity extends AppCompatActivity implements DepositDialog.DepositDialogListener implements De{
+public class AccountActivity extends AppCompatActivity implements DepositDialog.DepositDialogListener {
 
     int accountNo;
     int accountBal;
@@ -40,7 +40,6 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
 
         depositButton.setOnClickListener(view -> {
             openDialog();
-            Toast.makeText(this, "Deposit successful", Toast.LENGTH_SHORT).show();
         });
         withdrawButton.setOnClickListener(view ->{
             withdrawAmount();
@@ -66,5 +65,6 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
     public void applyTexts(int enteredAmount) {
         accountBal = accountBal + enteredAmount;
         accountBalTextView.setText(String.valueOf(accountBal));
+        Toast.makeText(this, "Deposit successful", Toast.LENGTH_SHORT).show();
     }
 }
