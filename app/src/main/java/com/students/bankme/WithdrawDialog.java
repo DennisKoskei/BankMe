@@ -6,16 +6,19 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class DepositDialog extends AppCompatDialogFragment {
-    private EditText enterAmount;
-    private DepositDialogListener listener;
+public class WithdrawDialog extends AppCompatDialogFragment {
+    int amountToWithdraw;
+    private EditText enteredWithdrawAmount;
+    private WithdrawDialogListener listener;
 
     @NonNull
     @Override
@@ -23,10 +26,10 @@ public class DepositDialog extends AppCompatDialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.layout_deposit_dialog, null);
+        View view = inflater.inflate(R.layout.layout_withdraw_dialog, null);
 
         builder.setView(view);
-        builder.setTitle("Deposit Amount");
+        builder.setTitle("Withdraw Amount");
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -36,13 +39,11 @@ public class DepositDialog extends AppCompatDialogFragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                int enteredAmount = Integer.parseInt(enterAmount.getText().toString());
-                listener.applyTexts(enteredAmount);
+                amountToWithdraw = Integer.parseInt(enteredWithdrawAmount.getText().toString());
+                listener.applyTexts2(amountToWithdraw);
             }
         });
-
-        enterAmount = view.findViewById(R.id.enteredWithdrawAmount);
-
+        enteredWithdrawAmount = view.findViewById(R.id.enteredWithdrawAmount);
         return builder.create();
     }
 
@@ -50,13 +51,12 @@ public class DepositDialog extends AppCompatDialogFragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            listener = (DepositDialogListener) context;
+            listener = (WithdrawDialogListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "must implement DepositDialogListener");
         }
     }
-
-    public interface DepositDialogListener{
-        void applyTexts( int enteredAmount);
+    public interface WithdrawDialogListener{
+        void applyTexts2( int enteredWithdrawAmount);
     }
 }

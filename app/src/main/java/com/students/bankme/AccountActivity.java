@@ -8,11 +8,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AccountActivity extends AppCompatActivity implements DepositDialog.DepositDialogListener {
+public class AccountActivity extends AppCompatActivity implements DepositDialog.DepositDialogListener, WithdrawDialog.WithdrawDialogListener {
 
     int accountNo;
     int accountBal;
     String username;
+    TextView usernameTextView;
+    TextView accountNoTextView;
+    Button depositButton;
+    Button withdrawButton;
+    Button logoutButton;
+    Button infoButton;
     TextView accountBalTextView;
 
     @Override
@@ -20,13 +26,13 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        TextView usernameTextView = findViewById(R.id.usernameTextView);
-        TextView accountNoTextView = findViewById(R.id.accountNoTextView);
+        usernameTextView = findViewById(R.id.usernameTextView);
+        accountNoTextView = findViewById(R.id.accountNoTextView);
         accountBalTextView = findViewById(R.id.accountBalTextView);
-        Button depositButton = findViewById(R.id.depositButton);
-        Button withdrawButton = findViewById(R.id.withdrawButton);
-        Button logoutButton = findViewById(R.id.logoutButton);
-        Button infoButton = findViewById(R.id.infoButton);
+        depositButton = findViewById(R.id.depositButton);
+        withdrawButton = findViewById(R.id.withdrawButton);
+        logoutButton = findViewById(R.id.logoutButton);
+        infoButton = findViewById(R.id.infoButton);
 
         Bundle bundle3 = getIntent().getExtras();
         if (bundle3 != null) {
@@ -42,11 +48,12 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
             openDepositDialog();
         });
         withdrawButton.setOnClickListener(view ->{
-            withdrawAmount();
-            Toast.makeText(this, "withdraw successful", Toast.LENGTH_SHORT).show();
+            openWithdrawDialog();
         });
+
         logoutButton.setOnClickListener(view -> {
             Toast.makeText(this, "Logout successful ..", Toast.LENGTH_SHORT).show();
+            finish();
         });
         infoButton.setOnClickListener(view -> {
             startActivity(new Intent(AccountActivity.this, AboutScrollingActivity.class));
@@ -56,9 +63,9 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
         DepositDialog depositDialog= new DepositDialog();
         depositDialog.show(getSupportFragmentManager(), "depositDialog");
     }
-
-    public void withdrawAmount(){
-        // Code ...
+    public void openWithdrawDialog(){
+        WithdrawDialog withdrawDialog= new WithdrawDialog();
+        withdrawDialog.show(getSupportFragmentManager(), "withdrawDialog");
     }
 
     @Override
@@ -66,5 +73,11 @@ public class AccountActivity extends AppCompatActivity implements DepositDialog.
         accountBal = accountBal + enteredAmount;
         accountBalTextView.setText(String.valueOf(accountBal));
         Toast.makeText(this, "Deposit successful", Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public void applyTexts2(int enteredWithdrawAmount) {
+        accountBal = accountBal - enteredWithdrawAmount;
+        accountBalTextView.setText(String.valueOf(accountBal));
+        Toast.makeText(this, "Withdraw successful", Toast.LENGTH_SHORT).show();
     }
 }

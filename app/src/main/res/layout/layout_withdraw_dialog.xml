@@ -7,16 +7,15 @@
 
     <EditText
         android:id="@+id/enteredWithdrawAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Enter Deposit Amount"
+        android:layout_width="213dp"
+        android:layout_height="46dp"
+        android:hint="Amount to Withdraw"
+        android:textAlignment="center"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.432" />
-
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
