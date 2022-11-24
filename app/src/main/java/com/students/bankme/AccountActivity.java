@@ -8,11 +8,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AccountActivity extends AppCompatActivity {
+public class AccountActivity extends AppCompatActivity implements DepositDialog.DepositDialogListener implements De{
 
     int accountNo;
     int accountBal;
     String username;
+    TextView accountBalTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,7 @@ public class AccountActivity extends AppCompatActivity {
 
         TextView usernameTextView = findViewById(R.id.usernameTextView);
         TextView accountNoTextView = findViewById(R.id.accountNoTextView);
-        TextView accountBalTextView = findViewById(R.id.accountBalTextView);
+        accountBalTextView = findViewById(R.id.accountBalTextView);
         Button depositButton = findViewById(R.id.depositButton);
         Button withdrawButton = findViewById(R.id.withdrawButton);
         Button logoutButton = findViewById(R.id.logoutButton);
@@ -39,7 +40,6 @@ public class AccountActivity extends AppCompatActivity {
 
         depositButton.setOnClickListener(view -> {
             openDialog();
-            depositAmount();
             Toast.makeText(this, "Deposit successful", Toast.LENGTH_SHORT).show();
         });
         withdrawButton.setOnClickListener(view ->{
@@ -61,7 +61,10 @@ public class AccountActivity extends AppCompatActivity {
     public void withdrawAmount(){
         // Code ...
     }
-    public void depositAmount(){
-        // Code ...
+
+    @Override
+    public void applyTexts(int enteredAmount) {
+        accountBal = accountBal + enteredAmount;
+        accountBalTextView.setText(String.valueOf(accountBal));
     }
 }

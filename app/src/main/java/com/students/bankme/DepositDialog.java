@@ -1,6 +1,7 @@
 package com.students.bankme;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class DepositDialog extends AppCompatDialogFragment {
     private EditText enterAmount;
+    private DepositDialogListener listener;
 
     @NonNull
     @Override
@@ -34,12 +36,27 @@ public class DepositDialog extends AppCompatDialogFragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                int enteredAmount = Integer.parseInt(enterAmount.getText().toString());
+                listener.applyTexts(enteredAmount);
             }
         });
 
         enterAmount = view.findViewById(R.id.enterAmount);
 
         return builder.create();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            listener = (DepositDialogListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "must implement DepositDialogListener");
+        }
+    }
+
+    public interface DepositDialogListener{
+        void applyTexts( int enteredAmount);
     }
 }
