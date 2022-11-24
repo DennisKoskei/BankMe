@@ -38,6 +38,7 @@ public class AccountActivity extends AppCompatActivity {
         accountBalTextView.setText(String.valueOf(accountBal));
 
         depositButton.setOnClickListener(view -> {
+            openDialog();
             depositAmount();
             Toast.makeText(this, "Deposit successful", Toast.LENGTH_SHORT).show();
         });
@@ -51,6 +52,10 @@ public class AccountActivity extends AppCompatActivity {
         infoButton.setOnClickListener(view -> {
             startActivity(new Intent(AccountActivity.this, AboutScrollingActivity.class));
         });
+    }
+    public void openDialog(){
+        DepositDialog depositDialog= new DepositDialog();
+        depositDialog.show(getSupportFragmentManager(), "depositDialog");
     }
 
     public void withdrawAmount(){
